@@ -16,4 +16,8 @@ def get_login(user: str, pw: bytes) -> bool:
     return True
   return False
   
+def get_type(user: str) -> str:
+  users = get_users()
+
+  return users[user]["type"]
 
