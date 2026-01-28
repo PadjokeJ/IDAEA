@@ -11,7 +11,7 @@ import database
 load_dotenv("local.env")
 
 app = Flask(__name__)
-app.secret_key = getenv("SECRET")
+app.secret_key = bytes(str(getenv("SECRET")), "utf-8")
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
@@ -43,7 +43,7 @@ def login():
     return render_template("login.html")
   
   email = request.form["email"]
-  if email in database.get_users() and get_login(email, bytes(request.form["password"], "utf-8")):
+  if email in database.get_users() and database.get_login(email, bytes(request.form["password"], "utf-8")):
     user = User()
     user.id = email
     flask_login.login_user(user)

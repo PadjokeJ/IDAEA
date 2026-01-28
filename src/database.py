@@ -1,4 +1,5 @@
 import json
+import password
 
 def get_users() -> dict:
   with open("db/users.json", 'r') as f:
@@ -9,9 +10,9 @@ def get_login(user: str, pw: bytes) -> bool:
   users = get_users()
   
   data = users[user]
-  salt = data["salt"]
+  salt = bytes(data["salt"], "utf-8")
   pwdh = data["hash"]
-  if password.hash(password.salt(pw, salt)) == pwdh:
+  if password.hash(password.salt(pw, salt)[0]) == pwdh:
     return True
   return False
   
