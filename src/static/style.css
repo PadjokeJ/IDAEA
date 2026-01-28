@@ -1,0 +1,65 @@
+:root {
+  --background: #ffffff;
+  --background-2: #eaeaea;
+  --main: #222233;
+  --shadow: #eeeeee;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: var(--main);
+  background-color: var(--background);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --background: var(--main);
+    --background-2: #44444f;
+    --shadow: #111122;
+    --main: var(--background);
+  }
+}
+
+#content {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#login-card {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: var(--background);
+  box-shadow: 0 0 10px 2px var(--shadow);
+}
+
+.login-input {
+  min-width: 300px;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px 1px var(--shadow);
+  background-color: var(--background-2);
+}
+
+.login-label {
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
