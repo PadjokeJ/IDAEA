@@ -43,11 +43,12 @@ def login():
     return render_template("login.html")
   
   email = request.form["email"]
-  if email in get_users() and get_login(email, bytes(request.form["password"], "utf-8")):
+  if email in database.get_users() and get_login(email, bytes(request.form["password"], "utf-8")):
     user = User()
     user.id = email
     flask_login.login_user(user)
     return redirect("/home")
+  return redirect("/login?wrong")
 
 @app.route("/logout")
 def logout():
