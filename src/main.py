@@ -36,6 +36,10 @@ def request_loader(request):
   email = request.form.get("email")
   return user_loader(email)
 
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    return redirect("/login")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
   if request.method == "GET":
@@ -58,9 +62,8 @@ def logout():
   return redirect("/login")
 
 @app.route("/home")
+@login_required
 def home():
-  if not flask_login.current_user.is_authenticated:
-    return redirect("/login")
   return render_template("home.html")
 
 @app.route("/")
