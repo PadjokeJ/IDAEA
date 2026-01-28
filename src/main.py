@@ -63,16 +63,37 @@ def logout():
   flask_login.logout_user()
   return redirect("/login")
 
-@app.route("/home")
-@login_required
-def home():
-  return render_template("home.html")
-
 @app.route("/")
 def root():
   if flask_login.current_user.is_authenticated:
     return redirect("/home")
   return redirect("/login")
+
+@app.route("/home")
+@login_required
+def home():
+  return render_template("home.html")
+
+@app.route("/grades")
+@login_required
+def grades():
+  if flask_login.current_user.type == "Parent" or flask_login.current_user.type == "Teacher":
+    return render_template("grades.html")
+  return redirect("/home")
+
+@app.route("/grade/<student>")
+@login_required
+def grade(student):
+  if flask_login.current_user.type == "Teacher":
+    return render_template("grade_directory.html")
+  return redirect("/grades")
+
+@app.route("/feedback")
+@login_required
+def feedback():
+  if flask_login.current_user.type == "Parent" or flask_login.current_user.type == "Teacher":
+    return render_template("feedback.html")
+  return redirect("/home")
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=8080, debug=True)
