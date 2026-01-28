@@ -1,0 +1,20 @@
+[project]
+name = "IDAEA_jpfister"
+version = "0.0.1"
+authors = [
+  { name="Jonatan Pfister", email="" },
+]
+description = "Informative Directory for Advice from Educators to Apprentices"
+readme = "README.md"
+requires-python = ">=3.14"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://idaea.padjokej.dev"
+Issues = "https://github.com/PadjokeJ/IDAEA/issues"
+
