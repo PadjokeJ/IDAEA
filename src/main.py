@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import flask_login
+from flask_login import login_required
 
 from dotenv import load_dotenv
 from os import getenv
@@ -51,10 +52,22 @@ def login():
   return redirect("/login?wrong")
 
 @app.route("/logout")
+@login_required
 def logout():
   flask_login.logout_user()
   return redirect("/login")
 
+@app.route("/home")
+def home():
+  if not flask_login.current_user.is_authenticated:
+    return redirect("/login")
+  return render_template("home.html")
+
+@app.route("/")
+def root():
+  if flask_login.current_user.is_authenticated:
+    return redirect("/home")
+  return redirect("/login")
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=8080, debug=True)
