@@ -24,12 +24,14 @@ class User(flask_login.UserMixin):
 def user_loader(email):
   users = database.get_users()
   
-  if email not in users:
+  if email == None:
+    return
+  if password.hash(bytes(email, "utf-8")) not in users:
     return
   
   user = User()
   user.id = email
-  user.type = database.get_type(email)
+  user.type = database.get_type(password.hash(bytes(email, "utf-8")))
   return user
 
 @login_manager.request_loader
@@ -49,10 +51,10 @@ def login():
     return render_template("login.html")
   
   email = request.form["email"]
-  if email in database.get_users() and database.get_login(email, bytes(request.form["password"], "utf-8")):
+  if password.hash(bytes(email, "utf-8")) in database.get_users() and database.get_login(password.hash(bytes(email, "utf-8")), bytes(request.form["password"], "utf-8")):
     user = User()
     user.id = email
-    user.type = database.get_type(email)
+    user.type = database.get_type(password.hash(bytes(email, "utf-8")))
     flask_login.login_user(user)
     return redirect("/home")
   return redirect("/login?wrong")
