@@ -57,7 +57,19 @@ body {
 }
 
 .login-input#submit {
-  box-shadow: inset var(--shadow) -2px -2px 5px 1px; 
+  box-shadow: inset var(--shadow) -2px -2px 5px 1px, var(--shadow) 1px 1px 3px; 
+  cursor: pointer;
+}
+
+.login-input#submit:hover {
+  filter: brightness(95%);
+}
+
+button {
+  box-shadow: inset var(--shadow) -2px -2px 5px 1px, var(--shadow) 1px 1px 3px; 
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
 }
 
 .login-label {
@@ -69,6 +81,50 @@ body {
 nav {
   background-color: var(--background);
   box-shadow: var(--shadow) 0 0 30px;
-  padding: 15px;
+
+  display: flex;
+}
+
+.island {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+}
+
+#form {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+
+  padding: 20px;
+  width: 400px;
+
+  box-shadow: var(--shadow) 5px 5px 40px;
+  border-radius: 20px;
+}
+
+.tab {
+  height: 100%;
+  display: inline-block;
+  padding: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.tab#active {
+  border: 0;
+  border-radius: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-width: 0;
+  box-shadow: var(--shadow) 2px 2px 20px;
+}
+
+#logout {
+  right: 0;
+  position: absolute;
+  padding: 20px;
 }
 

@@ -97,6 +97,14 @@ def feedback():
     return render_template("feedback.html")
   return redirect("/home")
 
+@app.route("/admin")
+@login_required
+def admin():
+  if flask_login.current_user.type != "Admin":
+    return redirect("/home")
+
+  return render_template("admin.html")
+
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=8080, debug=True)
 
