@@ -111,14 +111,22 @@ nav {
   padding: 20px;
   margin-right: 10px;
   margin-left: 10px;
-}
 
-.tab#active {
+  box-shadow: inset var(--shadow) 0 0 0;
+  transition: box-shadow ease 0.2s;
+
   border: 0;
   border-radius: 20px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top-width: 0;
+}
+
+.tab:hover {
+  box-shadow: inset var(--shadow) 2px 2px 10px;
+}
+
+.tab#active {
   box-shadow: var(--shadow) 2px 2px 20px;
 }
 
